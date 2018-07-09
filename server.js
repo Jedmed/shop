@@ -2,13 +2,20 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-// const Products = require('./models/products.js');
-// const productSeed = require('./models/seed.js');
+const session = require('express-session');
 const methodOverride = require('method-override');
+const Products = require('./models/products.js');
 
 // Ports
 const port = process.env.PORT || 3000;
 const mongoUri =  process.env.MONGODB_URI || 'mongodb://localhost:27017/didd';
+
+// Middleware Set Session
+app.use(session({
+    secret: "feedmeseymour", //some random string
+    resave: false,
+    saveUninitialized: false
+}));
 
 // Middleware Body-Parser
 app.use(methodOverride('_method'));
