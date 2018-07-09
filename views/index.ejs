@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+  <nav class="navbar navbar-light bg-light d-flex justify-content-end">
+    <a href="/shop/new" class="navbar-brand">Add Product to Shop</a>
+  </nav>
+  <div class="row">
+    <div class="col sub-header">
+      <h2>New Releases</h2>
+    </div>
+  </div>
+  <div class="row">
+    <% for(let i = 0; i < shop.length; i++){ %>
+      <div class="col-md-3 col-12 products" data-aos="fade-up" data-aos-duration="1500">
+        <a href="/shop/<%= shop[i].id; %>"><img src="<%= shop[i].img %>" class="img-fluid" /></a>
+        <div class="row">
+          <div class="col-8">
+            <a href="/shop/<%= shop[i].id %>" class="name">
+              <p>
+                <%= shop[i].name %>
+              </p>
+            </a>
+            <% if (shop[i].qty > 0) { %>
+              <h4 class="stock">In Stock</h4>
+              <% } else { %>
+                <h4 class="no-stock">Out of Stock</h4>
+                <% } %>
+          </div>
+          <div class="col-4 text-right">
+            <p>$ <%= shop[i].price %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% } %>
+  </div>
+
+
+  <% include ../partials/footer %>

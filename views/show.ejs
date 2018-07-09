@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+  <nav class="navbar navbar-light bg-light justify-content-center">
+    <div class="d-flex w-50 mr-auto">
+      <a href="/shop/<%= product.id %>/edit" class="navbar-brand product-change">Edit</a>
+      <form action="/shop/<%= product.id %>?_method=DELETE" method="POST">
+        <input class="navbar-brand" type="submit" value="Delete" />
+      </form>
+    </div>
+    <a href="/shop" class="navbar-brand">Go Back</a>
+  </nav>
+  <div class="row">
+    <div class="col sub-header">
+      <h2><%= product.name %></h2>
+    </div>
+    <div class="row product-info">
+      <div class="col-md-5 col-12">
+        <img class="img-fluid" src="<%= product.img %>" />
+      </div>
+      <div class="col-md-5 col-10 offset-1">
+        <h3>Description:</h3>
+        <p>
+          <%= product.description %>
+        </p>
+        <div class="row">
+          <div class="col">
+            <h3>Price: </h3>
+          </div>
+          <div class="col">
+            <h3 class="text-right">$ <%= product.price %></h3>
+          </div>
+        </div>
+        <% if (product.qty > 0) { %>
+          <form action="/shop/<%= product.id %>/buy/<%= product.qty %>?_method=PUT" method="POST">
+            <input type="submit" value="Buy" class="btm btn-primary" />
+          </form>
+          <% } else { %>
+            <h3 class="no-stock">Out of Stock</h3>
+            <% } %>
+      </div>
+    </div>
+  </div>
+  <% include ../partials/footer %>
