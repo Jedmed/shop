@@ -1,6 +1,15 @@
 <% include ../partials/header %>
   <nav class="navbar navbar-light bg-light d-flex justify-content-end">
-    <a href="/shop/new" class="navbar-brand">Add Product to Shop</a>
+    <% if (!currentUser) { %>
+      <a href="/sessions/new" class="navbar-brand">Log In</a>
+      <a href="/users/new" class="navbar-brand">Register</a>
+      <% } %>
+        <% if(currentUser) { %>
+          <a href="/shop/new" class="navbar-brand">Add Product to Shop</a>
+          <form action="/sessions?_method=DELETE" method="POST">
+            <input type="submit" value="Logout" />
+          </form>
+          <% } %>
   </nav>
   <div class="row">
     <div class="col sub-header">
@@ -25,7 +34,8 @@
                 <% } %>
           </div>
           <div class="col-4 text-right">
-            <p>$ <%= shop[i].price %>
+            <p>$
+              <%= shop[i].price %>
             </p>
           </div>
         </div>

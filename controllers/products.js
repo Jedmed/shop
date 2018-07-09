@@ -2,14 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Products = require('../models/products.js');
 
-// Index Route
-router.get('/', (req, res) => {
-  Products.find({}, (error, data) => {
-    res.render('index.ejs', {
-      shop: data
-    });
-  });
-});
+
 
 // Seed Items
 router.get('/seed', async (req, res) => {

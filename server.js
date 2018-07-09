@@ -24,14 +24,27 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-// Middleware Controller
+// Middleware Products Controller
 const productsController = require('./controllers/products.js');
 app.use('/shop', productsController);
 
-// Seeding Data from models/seed.js
-// Products.create(productSeed, (err, data) => {
-//   console.log('Seed created');
-// });
+// Middleware User Controller
+const userController = require('./controllers/users.js')
+app.use('/users', userController);
+
+// Middleware Sessions controller
+const sessionsController = require('./controllers/sessions.js');
+app.use('/sessions', sessionsController);
+
+// Index Route
+app.get('/shop', (req, res) => {
+  Products.find({}, (error, data) => {
+    res.render('index.ejs', {
+      shop: data,
+      currentUser: req.session.currentUser
+    });
+  });
+});
 
 // Port Listener
 app.listen(port, () => {
