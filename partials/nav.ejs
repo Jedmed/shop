@@ -1,0 +1,16 @@
+<nav class="navbar navbar-light navbar-right">
+  <a href="#" class="navbar-brand fa fa-shopping-cart">Shopping Cart</a>
+  <span class="badge"><% if (currentCart) { %>
+    <%= currentCart.totalQty %>
+  <% }  %></span>
+<% if (!currentUser && !currentAdmin) { %>
+  <a href="/sessions/new" class="navbar-brand">Log In</a>
+  <a href="/users/new" class="navbar-brand">Register</a>
+  <% } %>
+    <% if(currentAdmin) { %>
+      <a href="/shop/new" class="navbar-brand">Add Product to Shop</a>
+      <form action="/admin?_method=DELETE" method="POST">
+        <input type="submit" value="Logout" />
+      </form>
+      <% } %>
+</nav>

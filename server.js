@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const Products = require('./models/products.js');
+const Cart = require('./models/cart.js')
 
 // Ports
 const port = process.env.PORT || 3000;
@@ -23,6 +24,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({
   extended: false
 }));
+
 
 // Middleware Products Controller
 const productsController = require('./controllers/products.js');
@@ -43,18 +45,6 @@ app.use('/adminnew', adminController);
 // Middleware Admin Sessions controller
 const adminSessionsController = require('./controllers/admin-sessions.js');
 app.use('/admin', adminSessionsController);
-
-
-// Index Route
-app.get('/shop', (req, res) => {
-  Products.find({}, (error, data) => {
-    res.render('index.ejs', {
-      shop: data,
-      currentUser: req.session.currentUser,
-      currentAdmin: req.session.currentAdmin
-    });
-  });
-});
 
 app.all('*', (req, res) => {
   res.redirect('/shop');

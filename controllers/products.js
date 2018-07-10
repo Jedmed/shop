@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Products = require('../models/products.js');
+const session = require('express-session');
+const Cart = require('../models/cart.js')
 
 // Seed Items
 router.get('/seed', async (req, res) => {
@@ -43,12 +45,13 @@ router.get('/seed', async (req, res) => {
 })
 
 // Index Route
-router.get('/shop', (req, res) => {
+router.get('/', (req, res) => {
   Products.find({}, (error, data) => {
     res.render('index.ejs', {
       shop: data,
       currentUser: req.session.currentUser,
-      currentAdmin: req.session.currentAdmin
+      currentAdmin: req.session.currentAdmin,
+      currentCart: req.session.cart
     });
   });
 });
@@ -90,13 +93,18 @@ router.put('/:id', (req, res) => {
   });
 });
 
-// Buy Route
-router.put('/:id/buy/:quantity', (req, res) => {
-  Products.findByIdAndUpdate(req.params.id, {
-    qty: (req.params.quantity - 1)
-  }, (error, data) => {
-    res.redirect('/shop');
-  });
+// // Add to Cart Route
+router.get('/:id/add-to-cart', (req, res) => {
+  let cart = new Cart(req.session.cart ? req.session.cart : { items: {}});
+
+  Products.findById(req.params.id, (error, product) => {
+    if (error) {
+      res.redirect('/shop');
+    }
+    cart.add(product, product.id);
+    req.session.cart = cart;
+    res.redirect('/shop/' + req.params.id)
+  })
 });
 
 // Show Route
@@ -108,7 +116,8 @@ router.get('/:id', (req, res) => {
       res.render('show.ejs', {
         product: data,
         currentUser: req.session.currentUser,
-        currentAdmin: req.session.currentAdmin
+        currentAdmin: req.session.currentAdmin,
+        currentCart: req.session.cart
       });
     }
   });

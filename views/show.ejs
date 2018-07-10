@@ -1,5 +1,6 @@
 <% include ../partials/header %>
-  <nav class="navbar navbar-light bg-light justify-content-end">
+<% include ../partials/nav %>
+  <!-- <nav class="navbar navbar-light bg-light justify-content-end">
     <% if(currentAdmin) { %>
     <div class="d-flex w-50 mr-auto">
       <a href="/shop/<%= product.id %>/edit" class="navbar-brand product-change">Edit</a>
@@ -9,7 +10,7 @@
     </div>
           <% } %>
     <a href="/shop" class="navbar-brand">Go Back</a>
-  </nav>
+  </nav> -->
   <div class="row">
     <div class="col sub-header">
       <h2><%= product.name %></h2>
@@ -32,8 +33,8 @@
           </div>
         </div>
         <% if (product.qty > 0) { %>
-          <form action="/shop/<%= product.id %>/buy/<%= product.qty %>?_method=PUT" method="POST">
-            <input type="submit" value="Buy" class="btm btn-primary" />
+          <form action="/shop/<%= product.id %>/add-to-cart" method="GET">
+            <input type="submit" value="Add To Cart" class="btm btn-primary" />
           </form>
           <% } else { %>
             <h3 class="no-stock">Out of Stock</h3>
