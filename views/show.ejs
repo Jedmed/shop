@@ -1,11 +1,13 @@
 <% include ../partials/header %>
-  <nav class="navbar navbar-light bg-light justify-content-center">
+  <nav class="navbar navbar-light bg-light justify-content-end">
+    <% if(currentAdmin) { %>
     <div class="d-flex w-50 mr-auto">
       <a href="/shop/<%= product.id %>/edit" class="navbar-brand product-change">Edit</a>
       <form action="/shop/<%= product.id %>?_method=DELETE" method="POST">
         <input class="navbar-brand" type="submit" value="Delete" />
       </form>
     </div>
+          <% } %>
     <a href="/shop" class="navbar-brand">Go Back</a>
   </nav>
   <div class="row">

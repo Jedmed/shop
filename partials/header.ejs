@@ -12,5 +12,9 @@
   <body>
     <div class="container">
       <div class="row title">
-        <a href="/shop"><h1 class="text-center main-title">CRUDDY FASHION</h1></a>
+        <% if (currentAdmin) { %>
+          <a href="/shop"><h1 class="text-center main-title">BOSS MODE</h1></a>
+        <% } else { %>
+                  <a href="/shop"><h1 class="text-center main-title">CRUDDY FASHION</h1></a>
+        <% } %>
       </div>

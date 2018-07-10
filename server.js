@@ -36,15 +36,29 @@ app.use('/users', userController);
 const sessionsController = require('./controllers/sessions.js');
 app.use('/sessions', sessionsController);
 
+// Middleware Admin controller
+const adminController = require('./controllers/admin.js');
+app.use('/adminnew', adminController);
+
+// Middleware Admin Sessions controller
+const adminSessionsController = require('./controllers/admin-sessions.js');
+app.use('/admin', adminSessionsController);
+
+
 // Index Route
 app.get('/shop', (req, res) => {
   Products.find({}, (error, data) => {
     res.render('index.ejs', {
       shop: data,
-      currentUser: req.session.currentUser
+      currentUser: req.session.currentUser,
+      currentAdmin: req.session.currentAdmin
     });
   });
 });
+
+app.all('*', (req, res) => {
+  res.redirect('/shop');
+})
 
 // Port Listener
 app.listen(port, () => {

@@ -2,13 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Products = require('../models/products.js');
 
-
-
 // Seed Items
 router.get('/seed', async (req, res) => {
-  const newProducts =
-  [
-    {
+  const newProducts = [{
       name: "Beige Coat",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       img: "https://misstg.com/wp-content/uploads/2017/06/beige-coat2.jpg",
@@ -40,11 +36,22 @@ router.get('/seed', async (req, res) => {
 
   try {
     const seedItems = await Products.create(newProducts)
-    res.redirect('/shop');
+    res.redirect('/');
   } catch (err) {
     res.send(err.message)
   }
 })
+
+// Index Route
+router.get('/shop', (req, res) => {
+  Products.find({}, (error, data) => {
+    res.render('index.ejs', {
+      shop: data,
+      currentUser: req.session.currentUser,
+      currentAdmin: req.session.currentAdmin
+    });
+  });
+});
 
 // New Route
 router.get('/new', (req, res) => {
@@ -95,9 +102,15 @@ router.put('/:id/buy/:quantity', (req, res) => {
 // Show Route
 router.get('/:id', (req, res) => {
   Products.findById(req.params.id, (error, data) => {
-    res.render('show.ejs', {
-      product: data
-    });
+    if (error) {
+      res.redirect('/shop')
+    } else {
+      res.render('show.ejs', {
+        product: data,
+        currentUser: req.session.currentUser,
+        currentAdmin: req.session.currentAdmin
+      });
+    }
   });
 });
 
