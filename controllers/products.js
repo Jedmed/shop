@@ -77,25 +77,38 @@ router.delete('/:id', (req, res) => {
 
 // Edit Route
 router.get('/:id/edit', (req, res) => {
-  Products.findById(req.params.id, (error, data) => {
-    res.render('edit.ejs', {
-      shop: data
+  if (req.session.currentAdmin) {
+    Products.findById(req.params.id, (error, data) => {
+      res.render('edit.ejs', {
+        shop: data,
+        currentUser: req.session.currentUser,
+        currentAdmin: req.session.currentAdmin,
+        currentCart: req.session.cart
+      });
     });
-  });
+  } else {
+    res.redirect('/shop/' + req.params.id);
+  }
 });
 
 // PUT Route
 router.put('/:id', (req, res) => {
-  Products.findByIdAndUpdate(req.params.id, req.body, {
-    new: true
-  }, (err, updatedModel) => {
-    res.redirect('/shop/' + req.params.id);
-  });
+  if (req.session.currentAdmin) {
+    Products.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    }, (err, updatedModel) => {
+      res.redirect('/shop/' + req.params.id);
+    });
+  } else {
+    res.send('Sorry you do not have Admin Priviledges');
+  }
 });
 
 // // Add to Cart Route
 router.get('/:id/add-to-cart', (req, res) => {
-  let cart = new Cart(req.session.cart ? req.session.cart : { items: {}});
+  let cart = new Cart(req.session.cart ? req.session.cart : {
+    items: {}
+  });
 
   Products.findById(req.params.id, (error, product) => {
     if (error) {
