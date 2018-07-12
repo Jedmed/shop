@@ -1,5 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
+  margin: 0;
 }
 
 h1, h2, h3 {
@@ -24,12 +25,12 @@ p {
   margin: 5px 0;
 }
 
-nav.navbar {
-  margin-bottom: 30px;
+.navbar {
+  padding: 10px 0;
 }
 
 .sub-header {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .name {
@@ -47,15 +48,47 @@ nav.navbar {
 }
 
 .title {
+  padding: 15px 15px 0 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh;
 }
 
-.main-title {
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-image: url(https://misstg.com/wp-content/uploads/2017/06/Hero3.jpg);
+  background-size: cover;
+}
+
+.badge {
+  padding-left: 20px !important;
+  font-size: 16px;
+}
+
+a.nav-item {
+  color: black;
+}
+
+h1.main-title {
+  margin-top: 25%;
   text-decoration: none;
   color: black;
+  font-size: 60px;
+  color: white;
+  text-shadow: 2px 2px #000000;
+}
+
+h1.mini-title {
+  text-decoration: none;
+  color: black;
+  font-size: 36px;
+}
+
+.main-content {
+  margin-top: 50px;
 }
 
 a:hover {

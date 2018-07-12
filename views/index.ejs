@@ -1,48 +1,42 @@
 <% include ../partials/header %>
-<% include ../partials/nav %>
-  <!-- <nav class="navbar navbar-light bg-light d-flex justify-content-end">
-    <% if (!currentUser && !currentAdmin) { %>
-      <a href="/sessions/new" class="navbar-brand">Log In</a>
-      <a href="/users/new" class="navbar-brand">Register</a>
-      <% } %>
-        <% if(currentAdmin) { %>
-          <a href="/shop/new" class="navbar-brand">Add Product to Shop</a>
-          <form action="/admin?_method=DELETE" method="POST">
-            <input type="submit" value="Logout" />
-          </form>
-          <% } %>
-  </nav> -->
-  <div class="row">
-    <div class="col sub-header">
-      <h2>New Releases</h2>
+  <% include ../partials/nav %>
+    <div class="row image">
+      <a href="/shop"><h1 class="text-center main-title">Damsel In<br />Dis Dress</h1></a>
     </div>
-  </div>
-  <div class="row">
-    <% for(let i = 0; i < shop.length; i++){ %>
-      <div class="col-md-3 col-12 products" data-aos="fade-up" data-aos-duration="1500">
-        <a href="/shop/<%= shop[i].id; %>"><img src="<%= shop[i].img %>" class="img-fluid" /></a>
+    <div class="row main-content">
+      <div class="container">
         <div class="row">
-          <div class="col-8">
-            <a href="/shop/<%= shop[i].id %>" class="name">
-              <p>
-                <%= shop[i].name %>
-              </p>
-            </a>
-            <% if (shop[i].qty > 0) { %>
-              <h4 class="stock">In Stock</h4>
-              <% } else { %>
-                <h4 class="no-stock">Out of Stock</h4>
-                <% } %>
-          </div>
-          <div class="col-4 text-right">
-            <p>$
-              <%= shop[i].price %>
-            </p>
+          <div class="col sub-header">
+            <h2>New Releases</h2>
           </div>
         </div>
+        <div class="row">
+          <% for(let i = 0; i < shop.length; i++){ %>
+            <div class="col-md-3 col-12 products" data-aos="fade-up" data-aos-duration="1500">
+              <a href="/shop/<%= shop[i].id; %>"><img src="<%= shop[i].img %>" class="img-fluid" /></a>
+              <div class="row">
+                <div class="col-8">
+                  <a href="/shop/<%= shop[i].id %>" class="name">
+                    <p>
+                      <%= shop[i].name %>
+                    </p>
+                  </a>
+                  <% if (shop[i].qty > 0) { %>
+                    <h4 class="stock">In Stock</h4>
+                    <% } else { %>
+                      <h4 class="no-stock">Out of Stock</h4>
+                      <% } %>
+                </div>
+                <div class="col-4 text-right">
+                  <p>$
+                    <%= shop[i].price %>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% } %>
+        </div>
       </div>
-      <% } %>
-  </div>
+    </div>
 
-
-  <% include ../partials/footer %>
+    <% include ../partials/footer %>
