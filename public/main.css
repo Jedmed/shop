@@ -33,6 +33,20 @@ p {
   margin-bottom: 20px;
 }
 
+.sub-header a {
+  color: rgba(0,0,0,.5);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sub-header a:hover {
+  color: rgba(0,0,0,.7);
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
 .name {
   text-decoration: none;
   color: black;
@@ -45,6 +59,16 @@ p {
 
 .no-stock {
   color: red;
+}
+
+.logout {
+  margin-left: 10px;
+  background-color: transparent;
+  border: none;
+  color: red;
+  font-weight: 400;
+  -webkit-appearance: none !important;
+  cursor: pointer;
 }
 
 .title {

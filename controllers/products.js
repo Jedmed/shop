@@ -58,14 +58,20 @@ router.get('/', (req, res) => {
 
 // New Route
 router.get('/new', (req, res) => {
-  res.render('new.ejs');
+  if (req.session.currentAdmin) {
+    res.render('new.ejs');
+  } else {
+    res.redirect('/shop');
+  }
 });
 
 // Create Route
 router.post('/', (req, res) => {
-  Products.create(req.body, (error, data) => {
-    res.redirect('/shop');
-  });
+  if (req.session.currentAdmin) {
+    Products.create(req.body, (error, data) => {
+      res.redirect('/shop');
+    });
+  }
 });
 
 // Delete Route
