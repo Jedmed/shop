@@ -2,29 +2,52 @@
   <% include ../partials/prenav %>
     <% include ../partials/nav %>
       <div class="container main-content">
-        <% for (cartItems of products) { %>
-          <div class="row">
-            <div class="col-4">
-              <p><strong><%= cartItems.item.name %></strong></p>
-            </div>
-            <div class="col-4 text-right">
-              <p>
-                <%= cartItems.qty %>
-              </p>
-            </div>
-            <div class="col-4 text-right">
-              <p>
-                <%= cartItems.item.price %>
-              </p>
-            </div>
+        <div class="row table-heading">
+          <div class="col-4">
+            <p><strong>Product Name</strong></p>
           </div>
-          <% } %>
+          <div class="col-2 text-right">
+            <p><strong>Quantity</strong></p>
+          </div>
+          <div class="col-2 text-right">
+            <p><strong>Price</strong></p>
+          </div>
+          <div class="col-4 text-right">
+            <p><strong>Remove</strong></p>
+          </div>
+        </div>
+        <% if (products) { %>
+          <% for (cartItems of products) { %>
             <div class="row">
-              <div class="col text-right">
-                <p><strong>Total Price:</strong>
-                  <%= currentCart.totalPrice %>
+              <div class="col-4">
+                <p><strong><%= cartItems.item.name %></strong></p>
+              </div>
+              <div class="col-2 text-right">
+                <p>
+                  <%= cartItems.qty %>
                 </p>
               </div>
+              <div class="col-2 text-right">
+                <p>
+                  <%= cartItems.item.price %>
+                </p>
+              </div>
+              <div class="col-4 text-right">
+                <a class="fa fa-times" href="/shop/cart/remove/<%= cartItems.item._id %>"></a>
+              </div>
             </div>
+            <% } %>
+              <div class="row">
+                <div class="col text-right">
+                  <p><strong>Total Price:</strong>
+                    <%= currentCart.totalPrice %>
+                  </p>
+                </div>
+              </div>
+              <% } else { %>
+                <div class="row title">
+                  <h2 class="text-center">There are no products in the shopping cart</h2>
+                </div>
+                <% } %>
       </div>
       <% include ../partials/footer %>

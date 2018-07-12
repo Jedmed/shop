@@ -1,4 +1,4 @@
-<nav class="row navbar navbar-expand-lg navbar-light bg-light">
+<nav class="row navbar navbar-expand-md navbar-light bg-light">
   <div class="container">
     <a href="/shop/cart" class="navbar-brand fa fa-shopping-cart"><span class="badge"><% if (currentCart) { %>
 <%= currentCart.totalQty %>
@@ -21,7 +21,6 @@
               <% } %>
                 <% if(currentAdmin) { %>
                   <li class="nav-item"><a href="/admin/shop" class="nav-link">Admin Panel</a></li>
-                  <li class="nav-item"><a href="/shop/new" class="nav-link">Add Product to Shop</a></li>
                   <form class="form-inline" action="/admin?_method=DELETE" method="POST">
                     <input type="submit" class="logout" value="Logout" />
                   </form>
