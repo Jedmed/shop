@@ -145,6 +145,10 @@ h1.mini-title {
   font-size: 36px;
 }
 
+.show-space {
+ padding: 10px 0;
+}
+
 .main-content {
   margin: 50px auto;
 }
@@ -197,23 +201,45 @@ textarea {
   border-radius: 5px;
 }
 
+.btn-disabled {
+  margin-top: 10px;
+  padding: 10px 50px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
 .btn-dark {
   margin-top: 20px;
 }
 
-input.navbar-brand {
+.fa-times {
+  color: red;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.fa-times:hover {
+  color: black;
+}
+
+form input.navbar-brand {
   outline: none;
   border: none;
   margin: 0;
+  font-size: 1rem;
   width: inherit;
   background-color: transparent;
   cursor: pointer;
+  color: red;
+}
+
+form>input.navbar-brand:hover {
+  border: none;
   color: red !important;
 }
 
 .form {
-  margin: 0 5px;
-  padding: 60px;
+  padding: 30px 0;
   -webkit-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.3);

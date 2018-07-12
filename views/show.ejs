@@ -1,42 +1,46 @@
 <% include ../partials/header %>
   <% include ../partials/prenav %>
-  <% include ../partials/nav %>
-    <div class="container main-content">
-      <div class="row">
-        <div class="col sub-header text-right">
-          <a href="/shop"><span class="arrow fa fa-arrow-left"></span>Go Back</a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col sub-header">
-          <h2><%= product.name %></h2>
-        </div>
-        <div class="row product-info">
-          <div class="col-md-5 col-12">
-            <img class="img-fluid" src="<%= product.img %>" />
+    <% include ../partials/nav %>
+      <div class="container main-content">
+        <div class="row">
+          <div class="col sub-header text-right">
+            <a href="/shop"><span class="arrow fa fa-arrow-left"></span>Go Back</a>
           </div>
-          <div class="col-md-5 col-10 offset-1">
-            <h3>Description:</h3>
-            <p>
-              <%= product.description %>
-            </p>
-            <div class="row">
-              <div class="col">
-                <h3>Price: </h3>
-              </div>
-              <div class="col">
-                <h3 class="text-right">$ <%= product.price %></h3>
-              </div>
+        </div>
+        <div class="row">
+          <div class="col sub-header">
+            <h2><%= product.name %></h2>
+          </div>
+          <div class="row product-info">
+            <div class="col-md-6 col-12">
+              <img class="img-fluid" src="<%= product.img %>" />
             </div>
-            <% if (product.qty > 0) { %>
-              <form action="/shop/<%= product.id %>/add-to-cart" method="GET">
-                <input type="submit" value="Add To Cart" class="btm btn-primary" />
-              </form>
+            <div class="col-md-5 col-10 offset-1">
+              <h3>Description:</h3>
+              <p>
+                <%= product.description %>
+              </p>
+              <div class="row">
+                <div class="col">
+                  <h3>Price: </h3>
+                </div>
+                <div class="col">
+                  <h3 class="text-right">$ <%= product.price %></h3>
+                </div>
+              </div>
+              <% if (currentUser) { %>
+                <% if (product.qty > 0) { %>
+                  <form action="/shop/<%= product.id %>/add-to-cart" method="GET">
+                    <input type="submit" value="Add To Cart" class="btn btn-primary" />
+                  </form>
+                  <% } else { %>
+                    <h3 class="no-stock">Out of Stock</h3>
+                    <% } %>
               <% } else { %>
-                <h3 class="no-stock">Out of Stock</h3>
-                <% } %>
+                <input type="submit" class="btn btn-disabled" disabled Value="Please Login to Add to Shopping Cart" />
+              <% } %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <% include ../partials/footer %>
+      <% include ../partials/footer %>

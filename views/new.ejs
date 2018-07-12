@@ -1,65 +1,71 @@
 <% include ../partials/header %>
-  <nav class="navbar navbar-light bg-light d-flex justify-content-end">
-    <a href="/shop" class="navbar-brand">Go Back</a>
-  </nav>
-  <div class="row">
-    <div class="col sub-header">
-      <h2>New Product</h2>
-    </div>
-  </div>
-  <form action='/shop' method="POST">
-    <div class="row form">
-      <div class="col-md-6 col-12">
+  <% include ../partials/prenav %>
+    <% include ../partials/nav %>
+      <div class="container main-content">
         <div class="row">
-          <div class="col-md-3 col-4 text-right">
-            <label class="text-right">Name:</label>
-          </div>
-          <div class="col-md-9 col-8">
-            <input type="text" name="name" />
+          <div class="col sub-header text-right">
+            <a href="/admin/shop"><span class="arrow fa fa-arrow-left"></span>Go Back</a>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3 col-4 text-right">
-            <label class="text-right">Description: </label>
-          </div>
-          <div class="col-md-9 col-8">
-            <textarea type="textarea" name="description"></textarea>
+          <div class="col sub-header">
+            <h2>New Product</h2>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-3 col-4 text-right">
-            <label class="text-right">Image: </label>
+        <form action='/shop' method="POST">
+          <div class="row form">
+            <div class="col-md-8 col-12">
+              <div class="row">
+                <div class="col-md-3 col-4 text-right">
+                  <label class="text-right">Name:</label>
+                </div>
+                <div class="col-md-9 col-8">
+                  <input type="text" name="name" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-4 text-right">
+                  <label class="text-right">Description: </label>
+                </div>
+                <div class="col-md-9 col-8">
+                  <textarea type="textarea" name="description"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-4 text-right">
+                  <label class="text-right">Image: </label>
+                </div>
+                <div class="col-md-9 col-8">
+                  <input type="url" name="img" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-12">
+              <div class="row">
+                <div class="col-md-6 col-4 text-right">
+                  <label class="text-right">Price: </label>
+                </div>
+                <div class="col-md-4 col-8">
+                  <input type="number" name="price" min="0" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-4 text-right">
+                  <label class="text-right">Quantity: </label>
+                </div>
+                <div class="col-md-4 col-8">
+                  <input type="number" name="qty" min="0" />
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row d-flex justify-content-center">
+                <div class="col-md-3 col-6">
+                  <input class="btn btn-dark" type="submit" value="Add New Product" />
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-md-9 col-8">
-            <input type="url" name="img" />
-          </div>
-        </div>
+        </form>
       </div>
-      <div class="col-md-6 col-12">
-        <div class="row">
-          <div class="col-md-3 col-4 text-right">
-            <label class="text-right">Price: </label>
-          </div>
-          <div class="col-md-3 col-8">
-            <input type="number" name="price" min="0" placeholder="$" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3 col-4 text-right">
-            <label class="text-right">Quantity: </label>
-          </div>
-          <div class="col-md-3 col-8">
-            <input type="number" name="qty" min="0" />
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-3 col-6">
-            <input class="btn btn-dark" type="submit" value="Add New Product" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-  <% include ../partials/footer %>
+      <% include ../partials/footer %>

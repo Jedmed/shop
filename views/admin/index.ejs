@@ -1,40 +1,37 @@
 <% include ../../partials/header %>
+    <% include ../../partials/prenav %>
   <% include ../../partials/nav %>
     <div class="row main-content">
       <div class="container">
         <div class="row">
-          <div class="col sub-header">
+          <div class="col-6 align-self-center">
             <h2>Admin Panel</h2>
           </div>
-        </div>
-        <div class="row">
-          <div class="col text-right margin-bottom">
+          <div class="col-6 text-right margin-bottom">
             <a class="btn btn-secondary" href="/shop/new">Add Product to Shop</a>
           </div>
         </div>
+        <hr/>
         <% for(let i = 0; i < shop.length; i++){ %>
-          <div class="row">
-            <div class="col-md-2 col-4 products">
+          <div class="row show-space d-flex align-items-center">
+            <div class="col-md-2 col-4">
               <img src="<%= shop[i].img %>" class="img-fluid" />
             </div>
-            <div class="col-md-5 col-4">
-              <p>
-                <%= shop[i].name %>
-              </p>
-              <p>
-                <%= shop[i].qty %>
-              </p>
-              <p>$
-                <%= shop[i].price %>
-              </p>
+            <div class="col-md-8 col-4">
+              <p><strong>Id: </strong><span><%= shop[i].id %></span></p>
+              <p><strong>Name: </strong><span><%= shop[i].name %></span></p>
+              <p><strong>Price: </strong><span><%= shop[i].price %></span></p>
+              <p><strong>Quantity: </strong><span><%= shop[i].qty %></span></p>
             </div>
-            <div class="col-md-5 col-4 text-right">
+            <div class="col-md-2 col-4 text-center">
               <a href="/shop/<%= shop[i].id %>/edit">Edit</a>
               <form class="inline-form" action="/shop/<%= shop.id %>?_method=DELETE" method="POST">
                 <input class="navbar-brand" type="submit" value="Delete" />
               </form>
             </div>
+
           </div>
+          <hr/>
           <% } %>
       </div>
     </div>

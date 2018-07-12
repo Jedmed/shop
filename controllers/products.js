@@ -59,7 +59,11 @@ router.get('/', (req, res) => {
 // New Route
 router.get('/new', (req, res) => {
   if (req.session.currentAdmin) {
-    res.render('new.ejs');
+    res.render('new.ejs', {
+      currentUser: req.session.currentUser,
+      currentAdmin: req.session.currentAdmin,
+      currentCart: req.session.cart
+    });
   } else {
     res.redirect('/shop');
   }
@@ -135,23 +139,24 @@ router.get('/cart', (req, res) => {
       currentAdmin: req.session.currentAdmin,
       currentCart: req.session.cart
     })
+  } else {
+    let cart = new Cart(req.session.cart);
+    res.render('shopping-cart.ejs', {
+      products: cart.generateArray(),
+      totalPrice: cart.totalPrice,
+      currentUser: req.session.currentUser,
+      currentAdmin: req.session.currentAdmin,
+      currentCart: req.session.cart
+    });
   }
-  let cart = new Cart(req.session.cart);
-  res.render('shopping-cart.ejs', {
-    products: cart.generateArray(),
-    totalPrice: cart.totalPrice,
-    currentUser: req.session.currentUser,
-    currentAdmin: req.session.currentAdmin,
-    currentCart: req.session.cart
-  });
 });
 
 // Remove Cart Item
 router.get('/cart/remove/:id', (req, res) => {
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
-    cart.removeItem(req.params.id);
-    req.session.cart = cart;
-    res.redirect('/shop/cart');
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  cart.removeItem(req.params.id);
+  req.session.cart = cart;
+  res.redirect('/shop/cart');
 });
 
 // Show Route

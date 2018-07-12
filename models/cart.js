@@ -26,7 +26,7 @@ module.exports = function Cart(oldCart) {
 
   this.generateArray = () => {
     const arr = [];
-    if (this.items) {
+    if (this.items != undefined) {
       for (let i in this.items) {
         arr.push(this.items[i]);
       }

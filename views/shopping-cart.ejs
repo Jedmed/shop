@@ -2,6 +2,11 @@
   <% include ../partials/prenav %>
     <% include ../partials/nav %>
       <div class="container main-content">
+        <div class="row">
+          <div class="col">
+            <h2>Shopping Cart</h2>
+          </div>
+        </div>
         <div class="row table-heading">
           <div class="col-4">
             <p><strong>Product Name</strong></p>
@@ -16,11 +21,12 @@
             <p><strong>Remove</strong></p>
           </div>
         </div>
+        <hr/>
         <% if (products) { %>
           <% for (cartItems of products) { %>
             <div class="row">
               <div class="col-4">
-                <p><strong><%= cartItems.item.name %></strong></p>
+                <p><%= cartItems.item.name %></p>
               </div>
               <div class="col-2 text-right">
                 <p>
@@ -29,18 +35,19 @@
               </div>
               <div class="col-2 text-right">
                 <p>
-                  <%= cartItems.item.price %>
+                  $<%= cartItems.item.price %>
                 </p>
               </div>
-              <div class="col-4 text-right">
+              <div class="col-4 d-flex justify-content-end align-items-center">
                 <a class="fa fa-times" href="/shop/cart/remove/<%= cartItems.item._id %>"></a>
               </div>
             </div>
             <% } %>
+            <hr/>
               <div class="row">
                 <div class="col text-right">
                   <p><strong>Total Price:</strong>
-                    <%= currentCart.totalPrice %>
+                    $<%= currentCart.totalPrice %>
                   </p>
                 </div>
               </div>
