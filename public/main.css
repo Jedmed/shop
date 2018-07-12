@@ -222,7 +222,7 @@ textarea {
   color: black;
 }
 
-form input.navbar-brand {
+form input.logout {
   outline: none;
   border: none;
   margin: 0;
@@ -233,7 +233,7 @@ form input.navbar-brand {
   color: red;
 }
 
-form>input.navbar-brand:hover {
+form>input.logout:hover {
   border: none;
   color: red !important;
 }
