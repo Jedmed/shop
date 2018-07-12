@@ -31,7 +31,9 @@
             <div class="col-md-3 col-4 text-right">
               <a href="/shop/<%= shop[i].id %>/edit">Edit</a>
             </div>
-
+            <form action="/shop/<%= product.id %>?_method=DELETE" method="POST">
+              <input class="navbar-brand" type="submit" value="Delete" />
+            </form>
           </div>
           <% } %>
       </div>

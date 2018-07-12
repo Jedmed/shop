@@ -20,11 +20,11 @@ app.use(session({
 
 // Middleware Body-Parser
 app.use(methodOverride('_method'));
+app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({
   extended: false
 }));
-
 
 // Middleware Products Controller
 const productsController = require('./controllers/products.js');

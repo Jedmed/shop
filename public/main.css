@@ -29,18 +29,29 @@ p {
   padding: 10px 0;
 }
 
+a.navbar-brand {
+  padding: 10px;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, .5) !important;
+}
+
+.navbar-brand:hover {
+  border: 1px solid rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, .9) !important;
+}
+
 .sub-header {
   margin-bottom: 20px;
 }
 
 .sub-header a {
-  color: rgba(0,0,0,.5);
+  color: rgba(0, 0, 0, .5);
   font-size: 16px;
   cursor: pointer;
 }
 
 .sub-header a:hover {
-  color: rgba(0,0,0,.7);
+  color: rgba(0, 0, 0, .7);
 }
 
 .margin-bottom {
